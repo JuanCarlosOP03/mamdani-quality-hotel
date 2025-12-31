@@ -1,0 +1,39 @@
+<div class="card shadow-sm">
+    <div class="form-header-bar"></div>
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="display-6 m-0">Encuesta de Calidad</h1>
+            <a href="/resultados" class="btn btn-primary px-4" style="background-color: #673ab7; border: none;">Resultados</a>
+        </div>
+        <p class="text-muted">Marque la opción que mejor represente su satisfacción según la escala proporcionada.</p>
+    </div>
+</div>
+<form action="/submit" method="POST">
+    <div class="card shadow-sm"><div class="card-body">
+        <label class="question-title">Dirección de correo electrónico *</label>
+        <input type="email" name="email" class="form-control" placeholder="Tu correo" required>
+    </div></div>
+
+    {% for section_name, questions in sections %}
+        <div class="section-divider">{{ section_name }}</div>
+        {% for id, text in questions %}
+        <div class="card shadow-sm"><div class="card-body">
+            <p class="question-title">{{ text }} *</p>
+            <div class="scale-box">
+                <span class="small text-muted">Deficiente</span>
+                {% for n in range(1, 11) %}
+                <div class="scale-item">
+                    <label>{{ n }}</label>
+                    <input type="radio" name="{{ id }}" value="{{ n }}" required>
+                </div>
+                {% endfor %}
+                <span class="small text-muted">Excelente</span>
+            </div>
+        </div></div>
+        {% endfor %}
+    {% endfor %}
+    
+    <div class="mb-5 d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary px-5 py-3 fs-5" style="background-color: #673ab7; border: none;">Enviar respuesta</button>
+    </div>
+</form>

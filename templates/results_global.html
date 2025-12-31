@@ -1,0 +1,42 @@
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h3 class="mb-4">Panel Administrativo de Resultados</h3>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    <th>Dimensiones (Inputs)</th>
+                    <th>Valor Crisp</th>
+                    <th>Calidad Difusa</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.email }}</td>
+                    <td><small class="text-muted">{{ item.fecha }}</small></td>
+                    <td>
+                        <div style="font-size: 0.85rem;">
+                            <span class="text-secondary">Des:</span> {{ item.inputs.desempeno }} |
+                            <span class="text-secondary">Efc:</span> {{ item.inputs.eficiencia }} |
+                            <span class="text-secondary">Efa:</span> {{ item.inputs.eficacia }} |
+                            <span class="text-secondary">Est:</span> {{ item.inputs.estabilidad }} |
+                            <span class="text-secondary">Pre:</span> {{ item.inputs.prevencion }}
+                        </div>
+                    </td>
+                    <td><strong>{{ item.crisp }}</strong></td>
+                    <td>
+                        <span class="badge bg-info text-dark">{{ item.etiqueta }}</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="mt-4 d-flex justify-content-between">
+            <a href="/logout" class="btn btn-danger btn-sm">Cerrar sesión</a>
+            <a href="/" class="btn btn-secondary btn-sm">Ir al Inicio</a>
+        </div>
+    </div>
+</div>
